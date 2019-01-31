@@ -10,20 +10,26 @@
       <div class="mx-auto pt-2" style="width: 192px; height: 192px; z-index: 1;">
         <img [src]="imgUrl" width="192" height="192">
       </div>
-      <div class="card text-white bg-dark" style="z-index: 2;">
+      <div class="card bg-dark" style="z-index: 2;">
         <div class="card-header text-center text-capitalize">
-          <div class="row justify-content-start">
+          <div class="row text-white justify-content-start">
             <div class="badge badge-secondary col-1" style="height: 20px;">#{{pokemon.id}}</div>
             <div class="h3 col-10">{{pokemon.name}}</div>
           </div>
         </div>
-        <div class="card-body text-capitalize">
-          <p>Type:</p>
-          <ng-container *ngFor="let pType of pokeTypes">
-            <div class="d-block badge mb-1 {{ pType.type.name }}" style="width: 150px;">
-              {{ pType.type.name }}
-            </div>
-          </ng-container>
+        <div class="card-body">
+          <div class="rounded bg-secondary p-2">
+            Type:<br />
+            <ng-container *ngFor="let pType of pokeTypes">
+              <div class="d-block badge text-white text-capitalize mb-1 {{ pType.type.name }}" style="width: 150px;">
+                {{ pType.type.name }}
+              </div>
+            </ng-container>
+          </div>
+          <div class="rounded bg-secondary p-2 mt-2">
+            Description:<br />
+            {{ pokeDescText.flavor_text }}
+          </div>
         </div>
       </div>
     </div>

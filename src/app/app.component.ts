@@ -18,6 +18,10 @@ export class AppComponent {
   imgUrl: string;
   pokeTypes: any[];
   pokemon: any;
+  pokeSpecies: any;
+  pokeSpeciesResponse: any;
+  pokeDesc: any[];
+  pokeDescText: any;
 
 
   getPost() {
@@ -26,6 +30,18 @@ export class AppComponent {
       response => {
         this.pokemon = response;
         this.pokeTypes = response.types;
+        this.pokeSpecies = response.species;
+
+        this.pokeSpeciesResponse = this.http.get(this.pokeSpecies.url);
+        this.pokeSpeciesResponse.subscribe(
+          data => {
+            console.log("Got a species");
+            this.pokeDesc = data.flavor_text_entries;
+            this.pokeDescText = this.pokeDesc[this.pokeDesc.length - 1];
+            console.log(this.pokeDescText);
+          }
+        )
+
         this.notFound = false;
         this.found = true;
         this.imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + this.pokemon.id + ".png";
@@ -36,7 +52,7 @@ export class AppComponent {
         this.value = "";
         this.found = false;
         this.notFound = true;
-        console.log('Error 404', error)
+        console.log('Error 404', error);
       }
     );
   }
