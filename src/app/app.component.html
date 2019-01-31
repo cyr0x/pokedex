@@ -1,0 +1,31 @@
+<div class="input-group shadow p-3 mb-5 bg-white rounded fixed-top">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Pokédex</span>
+  </div>
+  <input class="form-control" placeholder="Name or Pokédex ID" (keyup.enter)="getPost()" [(ngModel)]="value">
+  <button (click)='getPost()' class="btn btn-dark btn-sm ml-2">Get Post</button>
+</div>
+<div class="mt-5">
+    <div class="container" *ngIf="found">
+      <div class="mx-auto pt-2" style="width: 192px; height: 192px; z-index: 1;">
+        <img [src]="imgUrl" width="192" height="192">
+      </div>
+      <div class="card text-white bg-dark" style="z-index: 2;">
+        <div class="card-header text-center text-capitalize">
+          <div class="row justify-content-start">
+            <div class="badge badge-secondary col-1" style="height: 20px;">#{{pokemon.id}}</div>
+            <div class="h3 col-10">{{pokemon.name}}</div>
+          </div>
+        </div>
+        <div class="card-body text-capitalize">
+          <p>Type:</p>
+          <ng-container *ngFor="let pType of pokeTypes">
+            <div class="d-block badge mb-1 {{ pType.type.name }}" style="width: 150px;">
+              {{ pType.type.name }}
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
