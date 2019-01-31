@@ -3,7 +3,7 @@
     <span class="input-group-text" id="basic-addon1">Pokédex</span>
   </div>
   <input class="form-control" placeholder="Name or Pokédex ID" (keyup.enter)="getPost()" [(ngModel)]="value">
-  <button (click)='getPost()' class="btn btn-dark btn-sm ml-2">Get Post</button>
+  <button (click)='getPost()' class="btn btn-dark btn-sm ml-2">Search</button>
 </div>
 <div class="mt-5">
     <div class="container" *ngIf="found">
@@ -24,6 +24,13 @@
               {{ pType.type.name }}
             </div>
           </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="contrainer" *ngIf="notFound">
+      <div class="mx-auto pt-5 w-75">
+        <div class="alert alert-danger text-center" role="alert">
+          <strong>Error 404</strong> - Name or Pokédex ID not found.
         </div>
       </div>
     </div>
