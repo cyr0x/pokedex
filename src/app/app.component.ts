@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Pokemon } from './models/pokemon.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { PokemonService } from './pokemon.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  providers: [ PokemonService ],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'pokeapi-get';
-  constructor(private http: HttpClient) {}
+
+  constructor(private pokemonService: PokemonService) { }
+
+  //constructor(private http: HttpClient) {}
 
   rootUrl:string = 'https://pokeapi.co/api/v2/pokemon/';
   value: string;
@@ -17,13 +25,21 @@ export class AppComponent {
   notFound: boolean = false;
   imgUrl: string;
   pokeTypes: any[];
-  pokemon: any;
+  //pokemon: any;
   pokeSpecies: any;
   pokeSpeciesResponse: any;
   pokeDesc: any[];
   pokeDescText: any;
 
+  pokemon: Pokemon;
 
+
+  getPokemon() {
+    this.pokemonService.getPokemon().subscribe(data => this.pokemon = data);
+    console.log(this.pokemon);
+  }
+ 
+  /*
   getPost() {
     this.response = this.http.get(this.rootUrl + this.value.toLowerCase() + '/');
     this.response.subscribe(
@@ -56,5 +72,6 @@ export class AppComponent {
       }
     );
   }
+  */
 }
 

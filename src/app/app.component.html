@@ -2,11 +2,11 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Pokédex</span>
   </div>
-  <input class="form-control" placeholder="Name or Pokédex ID" (keyup.enter)="getPost()" [(ngModel)]="value">
-  <button (click)='getPost()' class="btn btn-dark btn-sm ml-2">Search</button>
+  <input class="form-control" placeholder="Name or Pokédex ID" (keyup.enter)="getPokemon()" [(ngModel)]="value">
+  <button (click)='getPokemon()' class="btn btn-dark btn-sm ml-2">Search</button>
 </div>
 <div class="mt-5">
-    <div class="container" *ngIf="found">
+    <div class="container">
       <div class="mx-auto pt-2" style="width: 192px; height: 192px; z-index: 1;">
         <img [src]="imgUrl" width="192" height="192">
       </div>
@@ -20,16 +20,16 @@
         <div class="card-body">
           <div class="rounded bg-secondary p-2">
             Type:<br />
-            <ng-container *ngFor="let pType of pokeTypes">
-              <div class="d-block badge text-white text-capitalize mb-1 {{ pType.type.name }}" style="width: 150px;">
-                {{ pType.type.name }}
+            <ng-container *ngFor="let pokeType of pokemon.types.type">
+              <div class="d-block badge text-white text-capitalize mb-1 {{ pokeType.name }}" style="width: 150px;">
+                {{ pokeType.name }}
               </div>
             </ng-container>
           </div>
-          <div class="rounded bg-secondary p-2 mt-2">
+          <!--<div class="rounded bg-secondary p-2 mt-2">
             Description:<br />
             {{ pokeDescText.flavor_text }}
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
